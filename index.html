@@ -22,7 +22,7 @@
       display: flex;
       flex-direction: column;
       position: sticky;
-      top: 0;     /* sticks to the top of the viewport */
+      top: 0;         /* keeps notes visible while scrolling */
       height: 100vh; /* full screen height */
     }
     textarea {
@@ -32,33 +32,37 @@
       padding: 10px;
       font-size: 14px;
     }
-    iframe {
-      width: 100%;
-      min-height: 2000px; /* adjust to match form length */
-      border: none;
-    }
   </style>
 </head>
 <body>
   <div class="form-container">
-    <!-- Paste your Jotform iframe below -->
-<iframe
+    <!-- Jotform embed with auto-resizing -->
+    <iframe
       id="JotFormIFrame-252310842076047"
       title="Clueho Character Sheet"
-      onload="window.parent.scrollTo(0,0)"
       allowtransparency="true"
-      allow="geolocation; microphone; camera; fullscreen; payment"
-      src="https://form.jotform.com/252310842076047"
+      allowfullscreen="true"
+      allow="geolocation; microphone; camera"
+      src="https://form.jotform.com/1234567890"
       frameborder="0"
-      style="min-width:100%;max-width:100%;height:539px;border:none;"
-      scrolling="no"
-    >
+      style="min-width:100%; height:539px; border:none;"
+      scrolling="no">
     </iframe>
-    <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-    <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-252310842076047']", "https://form.jotform.com/")</script>
-    
-    
+    <script type="text/javascript">
+      window.addEventListener("message", function(e) {
+        if (typeof e.data === 'string') {
+          var args = e.data.split(":");
+          if (args.length > 2) {
+            var iframe = document.getElementById("JotFormIFrame-1234567890");
+            if (iframe && args[0] === "setHeight") {
+              iframe.style.height = args[1] + "px";
+            }
+          }
+        }
+      });
+    </script>
   </div>
+
   <div class="notes">
     <h3>Notes</h3>
     <textarea placeholder="Write your notes here..."></textarea>
@@ -68,4 +72,5 @@
 
 
     
+
 
