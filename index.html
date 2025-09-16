@@ -1,54 +1,80 @@
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-.form-container iframe {
-  width: 100% !important;
-  border: none;
-  min-height: 2000px; /* or whatever is taller than your form */
-}
-.notes {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 25%;
-  height: 100vh;
-  background: #fef9c3;
-  border-left: 2px solid #ddd;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-.notes textarea {
-  flex: 1;
-  width: 100%;
-  resize: none;
-  padding: 10px;
-  font-size: 14px;
-}
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form with Notes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-<div class="form-container">
-  <iframe
-    id="JotFormIFrame-252310842076047"
-    src="https://form.jotform.com/252310842076047"
-    allowtransparency="true"
-    allow="geolocation; microphone; camera; fullscreen; payment"
-    scrolling="no"
-  ></iframe>
-  <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
-  <script>
-    window.jotformEmbedHandler(
-      "iframe[id='JotFormIFrame-252310842076047']",
-      "https://form.jotform.com/"
-    );
-  </script>
-</div>
+    /* Full-width form container */
+    .form-container {
+      width: 100%;
+    }
 
-<div class="notes">
-  <h3>Notes</h3>
-  <textarea placeholder="Write your notes here..."></textarea>
-</div>
+    .form-container iframe {
+      width: 100% !important;
+      min-height: 2000px; /* adjust as needed for your form */
+      border: none;
+      display: block;
+    }
+
+    /* Notes panel overlay */
+    .notes {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 25%;           /* adjust width as needed */
+      height: 100vh;
+      background: #fef9c3;
+      border-left: 2px solid #ddd;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;        /* stays on top of form */
+    }
+
+    .notes textarea {
+      flex: 1;
+      width: 100%;
+      resize: none;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    /* Optional: add some right margin to iframe so notes don't fully cover the form */
+    .form-container {
+      margin-right: 25%; /* same as notes width */
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <!-- Jotform embed -->
+    <iframe
+      id="JotFormIFrame-252310842076047"
+      title="Clueho Character Sheet"
+      allowtransparency="true"
+      allow="geolocation; microphone; camera; fullscreen; payment"
+      src="https://form.jotform.com/252310842076047"
+      scrolling="no">
+    </iframe>
+    <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
+    <script>
+      window.jotformEmbedHandler(
+        "iframe[id='JotFormIFrame-252310842076047']",
+        "https://form.jotform.com/"
+      );
+    </script>
+  </div>
+
+  <div class="notes">
+    <h3>Notes</h3>
+    <textarea placeholder="Write your notes here..."></textarea>
+  </div>
+</body>
+</html>
 
